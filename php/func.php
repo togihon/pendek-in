@@ -26,7 +26,7 @@ function checkDB($koneksi, $code)
     if ($query->num_rows > 0) { //ada data di db
         return array(true, $row);
     } else if ($query->num_rows == 0) {
-        return false;
+        return array(false, "");
     }
 }
 
@@ -51,10 +51,9 @@ function redirectUser($koneksi)
         if (!isEmpty($code)) {
             $check = checkDB($koneksi, $code);
             if ($check[0]) {
-               $link = $check[1]['actual_link'];
-               header("Location: $link");
+                $link = $check[1]['actual_link'];
+                header("Location: $link");
             }
         }
     }
-    
 }
