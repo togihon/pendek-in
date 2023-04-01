@@ -1,3 +1,12 @@
+var inputField = document.querySelector('[name="link"]')
+var userInputField = document.querySelector('[name="userCustomLink"]')
+var box = document.querySelector(".box")
+var loading = document.querySelector(".loading")
+var result = document.querySelector(".result")
+var linkRes = document.querySelector(".link-result")
+var customBox = document.querySelector(".box-custom")
+var root = document.querySelector(':root');
+
 function aboutUs() {
     Swal.fire({
         title: 'Tentang Kami',
@@ -19,18 +28,17 @@ function isValidUrl(string) {
 }
 
 function createLink() {
-    var inputField = document.querySelector('[name="link"]')
-    var userInputField = document.querySelector('[name="userCustomLink"]')
-    var box = document.querySelector(".box")
-    var loading = document.querySelector(".loading")
-    var result = document.querySelector(".result")
-    var linkRes = document.querySelector(".link-result")
-    var customBox = document.querySelector(".box-custom")
-    var root = document.querySelector(':root');
 
     if (!isValidUrl(inputField.value)) {
         box.classList.add("error")
         inputField.value = ""
+        Swal.fire({
+            position: 'top-end',
+            html: 'Link yang ada masukkan tidak valid',
+            showConfirmButton: false,
+            timer: 1400,
+            background: '#fce4e4'
+        })
     }
     if (isValidUrl(inputField.value)) {
         box.classList.remove("error")
@@ -57,9 +65,9 @@ function createLink() {
                     loading.classList.add("hidden")
                     result.classList.remove("hidden")
 
-                    width = (response.length * 10) + 10
+                    width = (response.length * 10) - 3
                     root.style.setProperty('--width-result', width + "px")
-                    root.style.setProperty('--badge-position', -(width/1.5) + "px")
+                    root.style.setProperty('--badge-position', -(width / 1.5) + "px")
                     linkRes.value = response
                 }, 650)
 
@@ -68,10 +76,11 @@ function createLink() {
     }
 }
 
+function removeSpace() {
+
+}
 
 function copyLink() {
-    var linkRes = document.querySelector(".link-result")
-
     linkRes.select();
     linkRes.setSelectionRange(0, 99999); // For mobile devices
 
@@ -79,6 +88,6 @@ function copyLink() {
 }
 
 function createCustomLink() {
-    document.querySelector(".box-custom").classList.toggle("show")
-    setTimeout(function () { document.querySelector('[name="userCustomLink"]').value = "" }, 250)
+    customBox.classList.toggle("show")
+    setTimeout(function () { userInputField.value = "" }, 250)
 }
