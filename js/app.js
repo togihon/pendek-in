@@ -34,7 +34,7 @@ function createLink() {
         inputField.value = ""
         Swal.fire({
             position: 'top-end',
-            html: 'Link yang ada masukkan tidak valid',
+            html: 'Link yang Anda masukkan tidak valid',
             showConfirmButton: false,
             timer: 1400,
             background: '#fce4e4'
@@ -58,6 +58,7 @@ function createLink() {
             .then((response) => {
                 if (response == "error") {
                     loading.classList.add("hidden")
+                    userInputField.value = ""
                     Swal.fire({
                         position: 'top-end',
                         html: 'Custom link tidak dapat digunakan',
