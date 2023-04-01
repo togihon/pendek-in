@@ -23,7 +23,7 @@ if (isEmpty($custom)) {
 
 if (!isEmpty($custom)) {
     //check if user custom already exist in table
-    if (!checkDB($koneksi, $custom)) {
+    if (checkDB($koneksi, $custom)) {
         echo "error";
     }
 }
