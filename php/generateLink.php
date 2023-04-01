@@ -16,14 +16,14 @@ if (isEmpty($custom)) {
     $custom =  createRandom(5);;
 
     //check if custom already exist in table
-    if (checkDB($koneksi, $custom)) {
+    if (checkDB($koneksi, $custom)[0]) { //if true
         $custom =  createRandom(5);
     }
 }
 
 if (!isEmpty($custom)) {
     //check if user custom already exist in table
-    if (checkDB($koneksi, $custom)) {
+    if (checkDB($koneksi, $custom)[0]) { //if true
         echo "error";
     }
 }
