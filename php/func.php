@@ -53,6 +53,8 @@ function redirectUser($koneksi)
             if ($check[0]) {
                 $link = $check[1]['actual_link'];
                 header("Location: $link");
+            } else if(!$check[0]){
+                header("Location: 404.php");
             }
         }
     }

@@ -1,4 +1,8 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    exit;
+}
+
 include("../php/func.php");
 include("../php/config.php");
 
@@ -19,7 +23,7 @@ if (isEmpty($custom)) {
 
 if (!isEmpty($custom)) {
     //check if user custom already exist in table
-    if (checkDB($koneksi, $custom)) {
+    if (!checkDB($koneksi, $custom)) {
         echo "error";
     }
 }
