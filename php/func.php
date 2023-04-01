@@ -1,5 +1,7 @@
 <?php
 
+if (count(get_included_files()) == 1) exit("Direct access not permitted.");
+
 function createRandom($n)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -53,7 +55,7 @@ function redirectUser($koneksi)
             if ($check[0]) {
                 $link = $check[1]['actual_link'];
                 header("Location: $link");
-            } else if(!$check[0]){
+            } else if (!$check[0]) {
                 header("Location: 404.php");
             }
         }

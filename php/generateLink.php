@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-    exit;
+    exit("Direct access not permitted.");
 }
 
 include("../php/func.php");
