@@ -1,4 +1,5 @@
 <?php
+
 function createRandom($n)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -21,10 +22,11 @@ function connectDB($host, $uname, $pass, $db)
 function checkDB($koneksi, $code)
 {
     $query = mysqli_query($koneksi, "SELECT * FROM `tb_link` WHERE shorten_code = '$code' ");
-    if ($query->num_rows > 0) {
-        return false;
+    $row = $query->fetch_assoc();
+    if ($query->num_rows > 0) { //ada data di db
+        return array(true, $row);
     } else if ($query->num_rows == 0) {
-        return true;
+        return false;
     }
 }
 
@@ -40,4 +42,19 @@ function isEmpty($var)
     } else if ($var != "") {
         return false;
     }
+}
+
+function redirectUser($koneksi)
+{
+    if (isset($_GET['id'])) {
+        $code = $_GET['id'];
+        if (!isEmpty($code)) {
+            $check = checkDB($koneksi, $code);
+            if ($check[0]) {
+               $link = $check[1]['actual_link'];
+               header("Location: $link");
+            }
+        }
+    }
+    
 }
