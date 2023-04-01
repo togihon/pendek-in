@@ -42,11 +42,10 @@ function createLink() {
     }
     if (isValidUrl(inputField.value)) {
         box.classList.remove("error")
-        loading.classList.remove("hidden")
         inputField.setAttribute('readonly', true)
         result.classList.add("hidden")
 
-        fetch("http://localhost/shortlink/php/generateLink.php", {
+        fetch("http://localhost/link/pendek-in/php/generateLink.php", {
             method: "POST",
             body: JSON.stringify({
                 link: inputField.value,
@@ -57,20 +56,30 @@ function createLink() {
             }
         }).then(response => response.text())
             .then((response) => {
-                //if response == "link tidak bisa digunakan" ....
-                setTimeout(function () {
-                    inputField.value = ""
-                    userInputField.value = ""
-                    inputField.removeAttribute('readonly')
+                if (response == "error") {
                     loading.classList.add("hidden")
-                    result.classList.remove("hidden")
+                    Swal.fire({
+                        position: 'top-end',
+                        html: 'Custom link tidak dapat digunakan',
+                        showConfirmButton: false,
+                        timer: 1400,
+                        background: '#fce4e4'
+                    })
+                } if (response != "error") {
+                    loading.classList.remove("hidden")
+                    setTimeout(function () {
+                        inputField.value = ""
+                        userInputField.value = ""
+                        inputField.removeAttribute('readonly')
+                        loading.classList.add("hidden")
+                        result.classList.remove("hidden")
 
-                    width = (response.length * 10) - 3
-                    root.style.setProperty('--width-result', width + "px")
-                    root.style.setProperty('--badge-position', -(width / 1.5) + "px")
-                    linkRes.value = response
-                }, 650)
-
+                        width = (response.length * 10) - 3
+                        root.style.setProperty('--width-result', width + "px")
+                        root.style.setProperty('--badge-position', -(width / 1.5) + "px")
+                        linkRes.value = response
+                    }, 650)
+                }
             })
             .catch(err => console.log(err))
     }
