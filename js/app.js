@@ -7,6 +7,8 @@ var linkRes = document.querySelector(".link-result")
 var customBox = document.querySelector(".box-custom")
 var root = document.querySelector(':root');
 
+userInputField.addEventListener('input', adjustWidth)
+
 function aboutUs() {
     Swal.fire({
         title: 'Tentang Kami',
@@ -75,17 +77,17 @@ function createLink() {
             }
         }).then(response => response.text())
             .then((response) => {
-                if (response == "error") {
+                if (response.includes("Error:")) {
                     loading.classList.add("hidden")
                     userInputField.value = ""
                     Swal.fire({
                         position: 'top-end',
-                        html: 'Custom link tidak dapat digunakan',
+                        html: response,
                         showConfirmButton: false,
                         timer: 1400,
                         background: '#fce4e4'
                     })
-                } if (response != "error") {
+                } if (!response.includes("Error:")) {
                     loading.classList.remove("hidden")
                     setTimeout(function () {
                         inputField.value = ""
@@ -94,7 +96,7 @@ function createLink() {
                         loading.classList.add("hidden")
                         result.classList.remove("hidden")
 
-                        width = (response.length * 10) - 3
+                        width = (response.length * 8) + 25
                         root.style.setProperty('--width-result', width + "px")
                         root.style.setProperty('--badge-position', -(width / 1.5) + "px")
                         linkRes.value = response
@@ -106,8 +108,13 @@ function createLink() {
 }
 
 function removeSpace() {
-
+    userInputField.value = userInputField.value.replace(/\s+/g, '-')
 }
+
+function adjustWidth() {
+    var width = userInputField.value.length * 8  + 25; // 8px per character
+    userInputField.style.width = width + "px";
+ }
 
 function copyLink() {
     linkRes.select();
@@ -118,5 +125,6 @@ function copyLink() {
 
 function createCustomLink() {
     customBox.classList.toggle("show")
+    userInputField.setAttribute('autofocus', true)
     setTimeout(function () { userInputField.value = "" }, 250)
 }
