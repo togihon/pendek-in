@@ -26,11 +26,12 @@ redirectUser($koneksi);
         <div class="title-top"><a href="">Pendek.in</a></div>
         <div class="nav-bar">
             <a href="#" onclick='return aboutUs()'>About us</a>
-            <a href="">Contact</a>
-            <a href="">Term of use</a>
+            <a href="#" onclick='return contactUs()'>Contact</a>
+            <a href="#" onclick='return termOfUse()'>Term of use</a>
         </div>
     </div>
-    <div id="bubble">
+    
+    <div class="bubble">
         <p>URL panjang memang bikin ribet! <br>
             <b>Pendek.in</b> aja biar lebih mudah :)
         </p>
