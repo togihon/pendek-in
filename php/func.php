@@ -46,6 +46,15 @@ function isEmpty($var)
     }
 }
 
+function validateURL($url)
+{
+    if (filter_var($url, FILTER_VALIDATE_URL)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function redirectUser($koneksi)
 {
     if (isset($_GET['id'])) {
