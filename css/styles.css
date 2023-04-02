@@ -41,7 +41,6 @@ body {
 
 .bubble {
     margin-top: 70px;
-    margin-left: -20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -190,6 +189,38 @@ body {
     border-color: #2072DF transparent #2072DF transparent;
     animation: loading 1.2s linear infinite;
 }
+
+.error-page{
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-page h3{
+    font-size: 150pt;
+    margin: 0;
+}
+
+.error-page p {
+    margin: 0;
+}
+
+.error-page .subtitle{
+    font-size: 25pt;
+    font-weight: 300;
+}
+
+.error-page .text{
+    padding: 15px;
+    width: 50%;
+    color: #70383B;
+    font-size: 14pt;
+    font-weight: 100;
+    text-align: center;
+}
+
 
 @keyframes loading {
     0% {
