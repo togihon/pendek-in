@@ -1,0 +1,25 @@
+    <div class="bubble">
+        <p>URL panjang memang bikin ribet! <br>
+            <b>Pendek.in</b> aja biar lebih mudah :)
+        </p>
+    </div>
+
+    <div class="box">
+        <input type="text" name="link" onkeyup="removeSpace()" placeholder="https://example.com" autofocus><button onclick="createLink()" id="create-link"><i class="fas fa-link"></i></button>
+    </div>
+
+    <div class="custom">
+        <a class="createCustom" href="#" onclick="return createCustomLink()">Custom link pendek kamu.</a>
+        <div class="box-custom">
+            pendek.in/ <input type="text" onkeyup="removeSpace()" maxlength="15" name="userCustomLink">
+        </div>
+    </div>
+    <div class="loading-container">
+        <div class="loading hidden"></div>
+    </div>
+    <div class="result hidden">
+        <div class="copylink">
+            <input class="link-result" name="link-res" value="pendek.in/35hfsI" readonly><a class="btn" href="#" onclick="return copyLink()" alt="Copy to clipboard"><i class="far fa-copy"></i></a>
+        </div>
+        <p class="badge">Horaay!</p>
+    </div>
