@@ -12,8 +12,27 @@ function aboutUs() {
         title: 'Tentang Kami',
         icon: 'question',
         html: '<b>Pendek.in</b> adalah sebuah website yang dapat kamu gunakan untuk mengubah URL menjadi pendek dan singkat.',
-        confirmButtonText: 'Good to know',
-        confirmButtonColor: '#3085d6',
+        showConfirmButton: false,
+    }
+    )
+}
+
+function contactUs() {
+    Swal.fire({
+        title: 'Kontak Kami',
+        icon: 'info',
+        html: '<i class="fa fa-envelope"></i> contact@mail.com',
+        showConfirmButton: false,
+    }
+    )
+}
+
+function termOfUse() {
+    Swal.fire({
+        title: 'Term of use',
+        icon: 'warning',
+        html: 'Link pendek yang telah anda buat dapat diakses selama 2 (dua) hari setelah dibuat.',
+        showConfirmButton: false,
     }
     )
 }
