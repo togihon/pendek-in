@@ -19,7 +19,7 @@ $currentTime = microtime(true);
 if ($currentTime - $lastRequestTime < 5) {
     http_response_code(429);
     header('Retry-After: ' . (5 - ($currentTime - $lastRequestTime)));
-    echo 'error';
+    echo 'Error: terlalu banyak request';
     exit;
 } else {
     $_SESSION['last_request_time'] = $currentTime;
@@ -38,7 +38,7 @@ if ($currentTime - $lastRequestTime < 5) {
         if (!isEmpty($custom)) {
             //check if user custom already exist in table
             if (checkDB($koneksi, $custom)[0]) { //if true
-                echo "error";
+                echo "Error: custom link tidak bisa digunakan";
             }
         }
 

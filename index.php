@@ -38,7 +38,7 @@ redirectUser($koneksi);
     </div>
 
     <div class="box">
-        <input type="text" name="link" placeholder="https://example.com" autofocus><button onclick="createLink()" id="create-link"><i class="fas fa-link"></i></button>
+        <input type="text" name="link" onkeyup="removeSpace()" placeholder="https://example.com" autofocus><button onclick="createLink()" id="create-link"><i class="fas fa-link"></i></button>
     </div>
 
     <div class="custom">
