@@ -5,8 +5,11 @@ var loading = document.querySelector(".loading")
 var result = document.querySelector(".result")
 var linkRes = document.querySelector(".link-result")
 var customBox = document.querySelector(".box-custom")
+var toogle = document.querySelector(".toogle")
+var navBar = document.querySelector(".nav-bar")
 var root = document.querySelector(':root');
 
+root.style.setProperty("--display-mobile", "none");
 userInputField.addEventListener('input', adjustWidth)
 
 function aboutUs() {
@@ -112,9 +115,9 @@ function removeSpace() {
 }
 
 function adjustWidth() {
-    var width = userInputField.value.length * 8  + 25; // 8px per character
+    var width = userInputField.value.length * 8 + 25; // 8px per character
     userInputField.style.width = width + "px";
- }
+}
 
 function copyLink() {
     linkRes.select();
@@ -128,3 +131,12 @@ function createCustomLink() {
     userInputField.setAttribute('autofocus', true)
     setTimeout(function () { userInputField.value = "" }, 250)
 }
+
+toogle.addEventListener("click", function () {
+    var display = getComputedStyle(root).getPropertyValue("--display-mobile")
+    if (display == "none") {
+        root.style.setProperty("--display-mobile", "inline");
+    } else {
+        root.style.setProperty("--display-mobile", "none");
+    }
+})
