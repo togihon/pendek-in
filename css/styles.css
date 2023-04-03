@@ -1,6 +1,7 @@
 :root {
     --width-result: 0px;
     --badge-position: 0px;
+    --display-mobile: none;
 }
 
 body {
@@ -37,6 +38,10 @@ body {
     font-size: 13pt;
     margin-left: 30px;
     color: #00000F
+}
+
+.toogle {
+    display: none;
 }
 
 .bubble {
@@ -190,7 +195,7 @@ body {
     animation: loading 1.2s linear infinite;
 }
 
-.error-page{
+.error-page {
     margin-top: 70px;
     display: flex;
     justify-content: center;
@@ -198,7 +203,7 @@ body {
     align-items: center;
 }
 
-.error-page h3{
+.error-page h3 {
     font-size: 150pt;
     margin: 0;
 }
@@ -207,12 +212,12 @@ body {
     margin: 0;
 }
 
-.error-page .subtitle{
+.error-page .subtitle {
     font-size: 25pt;
     font-weight: 300;
 }
 
-.error-page .text{
+.error-page .text {
     padding: 15px;
     width: 50%;
     color: #70383B;
@@ -267,17 +272,56 @@ body {
     opacity: 1;
 }
 
-@media (min-width: 300px) and (max-width: 500px) {
+@media (300px < width < 500px) {
     .title-top {
-        margin-left: 10px;
-        margin-right: 0px;
+        margin-left: 35px;
+        font-size: 15pt;
+    }
+
+    .nav-bar::before {
+        content: "";
+        width: 0;
+        height: 0;
+        right: 0;
+        position: fixed;
+        border-style: solid;
+        margin-top: -12px;
+        margin-right: 30px;
+        border-width: 0 13px 20px 13px;
+        border-color: transparent transparent #2072DF transparent;
     }
 
     .nav-bar {
-        opacity: 0;
+        display: var(--display-mobile);
+        position: fixed;
+        width: 180px;
+        margin: 50px 30px 0px 0px;
+        right: 0;
+        transition: all 2s ease;
+        z-index: 1;
     }
 
-    #bubble {
+    .nav-bar a {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        border: none;
+        font-size: 12pt;
+        background-color: #2072DF;
+        color: white;
+    }
+
+    .toogle {
+        display: inline;
+        margin: 25px;
+        padding: 10px;
+        right: 0;
+        position: absolute;
+        transform: translateY(-50%);
+        z-index: 2;
+    }
+
+    .bubble {
         font-size: 15pt;
     }
 
@@ -291,5 +335,10 @@ body {
         margin-left: 5px;
         padding: 15px 15px;
         font-size: 12pt;
+    }
+
+    #footer {
+        font-size: 11pt;
+
     }
 }
